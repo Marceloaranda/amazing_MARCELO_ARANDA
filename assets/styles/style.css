@@ -105,3 +105,23 @@ display: flex;
     padding: 20px;
     margin-left: 10px;
   }
+
+
+  @media (max-width: 991px) {
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-item > a{
+        width: 100%;
+        margin: 5px 0 5px 0;
+    }
+
+    .categorias {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .formbtn {
+        width: 60%;
+    }
+  }
