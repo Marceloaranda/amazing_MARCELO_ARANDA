@@ -40,6 +40,9 @@
     align-items: center;
 }
 
+.card img {
+    height: 40%;
+}
 
 .f-icon{
     width: 50px;
@@ -87,10 +90,11 @@ display: flex;
 
 
 .details-main-container {
+    
     display: flex;
     justify-content: space-evenly;
     text-align: center;
-    border: #000 1px solid;
+    /*border: #000 1px solid;*/
     padding: 20px;
     margin: 50px 250px 50px 250px;
   }
@@ -99,7 +103,10 @@ display: flex;
     border: #000 1px solid;
     padding: 20px;
   }
-  
+  .detail-image-container img{
+    width: 100%;
+  }
+
   .details-text-container {
     border: #000 1px solid;
     padding: 20px;
