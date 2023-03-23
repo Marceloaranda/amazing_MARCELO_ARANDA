@@ -43,6 +43,11 @@
 .card img {
     height: 40%;
 }
+.card-title {
+    text-align: center;
+    font-size: 1.7rem;
+}
+
 
 .f-icon{
     width: 50px;
@@ -75,6 +80,18 @@ display: flex;
 
 }
 
+a[href="#"]{
+    background-color: green;
+}
+
+a:hover{
+    background-color: rgb(232, 205, 26);
+    color: black;
+    transform: scale(1.1) rotate(4deg);
+}
+
+
+
 
 .contacto {
     background-color: rgba(124, 173, 72, 0.719);
@@ -90,28 +107,89 @@ display: flex;
 
 
 .details-main-container {
-    
+   
     display: flex;
-    justify-content: space-evenly;
+    justify-content:left;
+
     text-align: center;
-    /*border: #000 1px solid;*/
-    padding: 20px;
-    margin: 50px 250px 50px 250px;
+    padding: 5px;
+    margin: 5px;
+    flex-wrap: wrap;
+
   }
   
   .detail-image-container {
+    width: 55%;
     border: #000 1px solid;
-    padding: 20px;
+    padding: 5px;
+    
   }
   .detail-image-container img{
     width: 100%;
+    
   }
 
   .details-text-container {
+    max-width: 44%;
     border: #000 1px solid;
     padding: 20px;
     margin-left: 10px;
   }
+.t-titulo{
+    font-family: Helvetica, sans-serif;
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+
+}
+
+
+   .t-head th{
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    background-color: rgba(124, 173, 72, 0.719);
+    
+}
+
+thead th:nth-child(1) {
+    
+    width: 40%;
+  }
+  thead th:nth-child(2) {
+    width: 40%;
+  }
+
+  td:nth-child(1) {
+    padding-left: 5%;
+  }
+
+  td:nth-child(2) {
+    text-align: right;
+    padding-right: 20%;
+  }
+  td:nth-child(3) {
+    text-align: right;
+    padding-right: 5%;
+  }
+
+
+#t-estadistica {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#t-estadistica tr:hover {
+    background-color: rgba(187, 234, 136, 0.719);
+    font-weight: bold;
+}
+
+#boot-icon{
+    font-size: 3rem;
+    color: rgb(255, 255, 255);
+
+}
 
 
   @media (max-width: 991px) {
@@ -130,5 +208,8 @@ display: flex;
     }
     .formbtn {
         width: 60%;
+    }
+    a:hover{
+        transform:none;
     }
   }

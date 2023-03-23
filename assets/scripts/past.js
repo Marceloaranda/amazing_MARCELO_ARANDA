@@ -1,12 +1,48 @@
+// TOMA LOS DATOS DE API Amazing
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+.then((response) => response.json())
+.then(data => {
+  let eventos = data.events
+  
+  let pastArray = eventos.filter((evento)=> evento.date < data.currentDate)
+
+generaCardsEvents(pastArray)
+
+/// GENERA CATEGORIAS PARA HTML************************
+
+let categorias = eventos.map((evento) => evento.category)
+let categorys = categorias.filter((cat, indice) => {
+   return categorias.indexOf(cat) === indice;
+})
+generaCat(categorys)
+//// **************************************************
+
+
+// FUNCIONES DE FILTROS
+
+const input = document.querySelector('input.form-control')
+input.addEventListener('input',filtroCruzado)
+
+function filtroCruzado (){
+  let arrayTextoIngresado = filtrarXTexto(pastArray,input.value)
+  let arrayFiltrado = filtrarXCat(arrayTextoIngresado)
+  generaCardsEvents(arrayFiltrado)
+}
+
+const divCheckBoxs = document.querySelector('#catlist')
+divCheckBoxs.addEventListener('change',filtroCruzado)
+
+
+})
+
+
+
 //  GENERA TARJETAS PARA HTML ******************************************
 
-let eventos = data.events;
-
-let pastArray = eventos.filter((evento)=> evento.date < data.currentDate)
-
 let containerCards = document.getElementById("cuerpo")
-
 let generaCardsEvents = (dataArray) => {
+
   if(dataArray.length == 0){
     containerCards.innerHTML = "<h2 class='display-1 fw-bolder'>There are no matching items!</h2>"
     return
@@ -33,24 +69,9 @@ let generaCardsEvents = (dataArray) => {
   containerCards.innerHTML = stringCard
 }
 
-generaCardsEvents(pastArray)
 
-
-// *********************************************************************************************
-
-  
 
 /// GENERA CATEGORIAS PARA HTML*********************************************************************
-
-let categorias = eventos.map((evento) => evento.category)
- //console.log(categorias)
-
-let categorys = categorias.filter((cat, indice) => {
-   return categorias.indexOf(cat) === indice;
-}
-)
-
-// console.log(categorys)
 
 let containerCategory = document.getElementById("catlist")
 //console.log(containerCategory)
@@ -60,36 +81,17 @@ let generaCat = (dataArray) => {
   dataArray.forEach(cat => {
                                                                                       
     stringCat += `
-
-    <label class="category"><input name="position1" type="checkbox" value="${cat}">${cat}</label>
-
+    <div class="form-check form-check-inline">
+    <label class="form-check-label"><input class="form-check-input" name="position1" type="checkbox" value="${cat}">${cat}</label>
+    </div>
         `
   })
 
   containerCategory.innerHTML = stringCat
 }
 
-generaCat(categorys)
-
-//**************************************************************************************************** */
-
-
-// FUNCIONES DE FILTROS
-
-
-function filtroCruzado (){
-  let arrayTextoIngresado = filtrarXTexto(pastArray,input.value)
-  let arrayFiltrado = filtrarXCat(arrayTextoIngresado)
-  generaCardsEvents(arrayFiltrado)
-}
-
-
-
 
 /// FILTOR POR CATEGORIA
-
-const divCheckBoxs = document.querySelector('#catlist')
-divCheckBoxs.addEventListener('change',filtroCruzado)
 
 function filtrarXCat(lista){
   let radios = Array.from(document.querySelectorAll("input[type='checkbox']"))
@@ -104,12 +106,10 @@ function filtrarXCat(lista){
 
 // FILTO POR TEXTO 
 
-const input = document.querySelector('input.form-control')
-input.addEventListener('input',filtroCruzado)
-
 function filtrarXTexto(array, texto){
   let arrayTextoIngresado= array.filter(evento => evento.name.toLowerCase().includes(texto.toLowerCase()))
   return arrayTextoIngresado
 }
+
 
 
